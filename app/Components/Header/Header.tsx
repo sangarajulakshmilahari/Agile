@@ -18,8 +18,8 @@ export default function Header() {
           <Image
             src="/logo.png"
             alt="Adroitent logo"
-            height={44}
-            width={44}
+            height={54}
+            width={84}
             priority
           />
         </div>
@@ -31,14 +31,34 @@ export default function Header() {
 
           <FontAwesomeIcon icon={faCircleUser} style={{ color: "#000" }} />
 
-          <span className="user-name">
+          {/* <span className="user-name">
             {keycloak.tokenParsed?.preferred_username}
-          </span>
+          </span> */}
 
           <button
             className="logout-btn"
             onClick={() => {
-              keycloak.logout();
+              // Clear storage
+              localStorage.clear();
+              sessionStorage.clear();
+
+              // Clear all app cookies
+              document.cookie.split(";").forEach((cookie) => {
+                document.cookie = cookie
+                  .replace(/^ +/, "")
+                  .replace(
+                    /=.*/,
+                    "=;expires=" + new Date().toUTCString() + ";path=/",
+                  );
+              });
+
+              // Clear Keycloak token
+              keycloak.clearToken();
+
+              // Realm logout
+              keycloak.logout({
+                redirectUri: window.location.origin,
+              });
             }}
           >
             Logout

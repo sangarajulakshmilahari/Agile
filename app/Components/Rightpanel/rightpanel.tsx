@@ -16,7 +16,7 @@ export default function RightPanel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) =>
-        prev === eventImages.length - 1 ? 0 : prev + 1
+        prev === eventImages.length - 1 ? 0 : prev + 1,
       );
     }, 5000);
 
@@ -43,7 +43,9 @@ export default function RightPanel() {
               className="btn left"
               onClick={() =>
                 setCurrentIndex(
-                  currentIndex === 0 ? eventImages.length - 1 : currentIndex - 1
+                  currentIndex === 0
+                    ? eventImages.length - 1
+                    : currentIndex - 1,
                 )
               }
             >
@@ -54,7 +56,9 @@ export default function RightPanel() {
               className="btn right"
               onClick={() =>
                 setCurrentIndex(
-                  currentIndex === eventImages.length - 1 ? 0 : currentIndex + 1
+                  currentIndex === eventImages.length - 1
+                    ? 0
+                    : currentIndex + 1,
                 )
               }
             >
@@ -91,28 +95,43 @@ export default function RightPanel() {
         <div className="events-card">
           <h3 className="events-title">Current Openings</h3>
 
-          <div className="mini">
-            React Developer <span className="apply">Apply →</span>
-          </div>
+          <a
+            href="http://referrals.adroitent.ai:8092/referral/index"
+            target="_blank"
+            // rel="noopener noreferrer"
+            className="mini link-row"
+          >
+            <span>React Developer</span>
+            <span className="apply">Apply →</span>
+          </a>
 
-          <div className="mini">
-            QA Engineer <span className="apply">Apply →</span>
-          </div>
+          <a
+            href="http://referrals.adroitent.ai:8092/referral/index"
+            target="_blank"
+            // rel="noopener noreferrer"
+            className="mini link-row"
+          >
+            <span>QA Engineer</span>
+            <span className="apply">Apply →</span>
+          </a>
         </div>
       </div>
 
       <style jsx>{`
         .right-panel {
-          width: 320px; /* match grid */
-          max-width: 320px;
+          width: 360px; /* match grid */
+          max-width: 360px;
           justify-self: end; /* stick to right */
           overflow: hidden;
           box-sizing: border-box;
         }
         .section-heading {
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 600;
+          margin-bottom: 10px;
+          color: #3a77e3;
         }
+
         .carousel-container {
           position: relative; /* REQUIRED */
           height: 180px;
@@ -128,7 +147,7 @@ export default function RightPanel() {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          background: rgba(0, 0, 0, 0.45);
+          background: rgba(207, 118, 58, 0.86);
           color: white;
           border: none;
           font-size: 14px;
@@ -161,7 +180,7 @@ export default function RightPanel() {
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.6);
+          background: #f56c00; /* orange */
           cursor: pointer;
           transition: all 0.3s ease;
         }
@@ -169,54 +188,74 @@ export default function RightPanel() {
         .dot.active {
           width: 18px;
           border-radius: 6px;
-          background: white;
+          background: #f56c00; /* solid orange */
         }
 
         .card {
           background: white;
-          border-radius: 10px;
-          padding: 20px;
+          border-radius: 16px;
+          padding: 16px;
           box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 20px;
         }
 
         .mini {
           background: #f9fafb;
           border-radius: 14px;
-          padding: 12px;
+          padding: 10px 12px;
           display: flex;
           justify-content: space-between;
+          align-items: center;
           font-size: 14px;
           margin-bottom: 10px;
+          line-height: 1.2;
         }
 
         .events-card {
           background: #ffffff;
-          border-radius: 14px;
-          padding: 16px;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+          border-radius: 16px;
+          padding: 14px;
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
         }
 
         .events-title {
           font-size: 15px;
-          font-weight: 600; /* 👈 makes it slightly bold */
-          margin-bottom: 12px;
-          color: #111827;
+          font-weight: 600;
+          margin-bottom: 8px;
+          color: #3a77e3;
         }
 
-        .mini {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 8px 0;
-          font-size: 14px;
-        }
-
-        .mini span {
+        .mini span:not(.apply) {
           color: #6b7280;
           font-size: 13px;
+        }
+
+        .apply {
+          background: #f56c00;
+          color: white;
+          padding: 6px 14px;
+          border-radius: 999px;
+          font-size: 13px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.2s ease;
+          min-width: 68px;
+          text-align: center;
+        }
+
+        .apply:hover {
+          background: #e65f00;
+        }
+        .link-row {
+          text-decoration: none;
+          color: inherit;
+          cursor: pointer;
+        }
+
+        .link-row:hover {
+          background: #f3f4f6;
         }
       `}</style>
     </aside>

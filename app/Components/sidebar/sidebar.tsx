@@ -125,7 +125,7 @@ export default function Sidebar({
 
         .active {
           background: #fff3e0;
-          color: #ff9800;
+          color: #f56c00;
           font-weight: 600;
         }
 

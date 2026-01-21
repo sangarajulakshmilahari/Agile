@@ -17,7 +17,7 @@ export default function HolidayCalendar() {
 
   return (
     <div className="main-card">
-      <h3 className="section-heading" style={{ marginBottom: 16 }}>Holiday Calendar – 2026</h3>
+      <h3 className="section-heading" style={{ marginBottom: 16 ,color:"#f56c00",textAlign:"center"}}>Holiday Calendar – 2026</h3>
 
       <table className="holiday-table">
         <thead>

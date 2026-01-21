@@ -12,8 +12,11 @@ export default function KeycloakProvider({
     <ReactKeycloakProvider
       authClient={keycloak}
       initOptions={{
-        onLoad: "check-sso", 
-        checkLoginIframe: true, // ✅ enable SSO session sync
+        // 🔴 Forces fresh login every time
+        onLoad: "login-required",
+
+        // 🔴 Prevents iframe cookie reuse
+        checkLoginIframe: false,
       }}
     >
       {children}

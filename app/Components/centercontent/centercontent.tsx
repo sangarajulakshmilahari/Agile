@@ -4,14 +4,13 @@ type AppItem = {
   name: string;
   description: string;
   icon: string;
-  bg: string,
+  bg: string;
   url?: string;
 };
 
 type CenterContentProps = {
   activeView: "home" | "holiday";
 };
-
 
 const apps: AppItem[] = [
   {
@@ -40,40 +39,39 @@ const apps: AppItem[] = [
     description: "Developer tools & resources",
     icon: "/icons/devalley_icon.svg",
     bg: "linear-gradient(90deg, #7fdddd 0%, #0c7486 100%)",
-    url:  "http://202.153.39.93:7067/",
+    url: "http://202.153.39.93:7067/",
   },
   {
     name: "AARAM",
     description: "Access and roles management",
     icon: "/icons/aaram_icon.svg",
     bg: "linear-gradient(135deg, #00c9ff, #92fe9d)",
-    url:  "http://aaram.adroitent.ai:8000/",
+    url: "http://aaram.adroitent.ai:8000/",
   },
   {
     name: "ACarsh",
     description: "Asset management tool",
     icon: "/icons/knowledge_portal_icon.svg",
     bg: "linear-gradient(135deg, #0ea5e9, #9cd9f3)",
-    url:"https://192.168.1.81:8090/",
+    url: "https://192.168.1.81:8090/",
   },
   {
     name: "DROIT",
     description: "Document review automation",
     icon: "/icons/code_gen_icon.svg",
     bg: "linear-gradient(135deg, #9697f5, #2737c9)",
-    url:"http://droit.adroitent.ai:7081/login",
+    url: "http://droit.adroitent.ai:7081/login",
   },
   {
     name: "Test Case Generator",
     description: "AI-powered test case creation",
     icon: "/icons/test_case_icon.svg",
     bg: "linear-gradient(135deg, #eb3c93, #fb7185)",
-    url: "https://adroitent.ai/"
+    url: "https://adroitent.ai/",
   },
 ];
 
 export default function CenterContent({ activeView }: CenterContentProps) {
-
   if (activeView === "holiday") {
     return <Holidaycalender />;
   }
@@ -83,20 +81,23 @@ export default function CenterContent({ activeView }: CenterContentProps) {
       <div className="main-card">
         <div className="mission-vision-wrapper">
           <div className="mv-card">
-            <h2>Our Mission</h2>
+            <h2 style={{ color: "#3a77e3" }}>Our Mission</h2>
             <p>
-              To become the <strong>most sought-after</strong> Technology
-              Partner for Enterprise AI Solutions in the market.
+              To become the{" "}
+              <strong style={{ color: "#f56c00" }}>most sought-after</strong>{" "}
+              Technology Partner for Enterprise AI Solutions in the market.
             </p>
           </div>
 
           <div className="mv-card">
-            <h2>Our Vision</h2>
+            <h2 style={{ color: "#3a77e3" }}>Our Vision</h2>
             <p>
-              We aspire to be the <strong>indispensable</strong> Partner that
-              enterprises turn to for AI-driven transformation—delivering not
-              just technology, but enduring value, growth, and a future where
-              businesses and people flourish together.
+              We aspire to be the{" "}
+              <strong style={{ color: "#f56c00" }}>indispensable</strong>{" "}
+              Partner that enterprises turn to for AI-driven
+              transformation—delivering not just technology, but enduring value,
+              growth, and a future where businesses and people flourish
+              together.
             </p>
           </div>
         </div>
@@ -182,7 +183,7 @@ export default function CenterContent({ activeView }: CenterContentProps) {
 
         .applications-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
           gap: 20px;
         }
 
@@ -194,7 +195,9 @@ export default function CenterContent({ activeView }: CenterContentProps) {
           display: flex;
           gap: 14px;
           cursor: pointer;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
         }
 
         .application-card:hover {
@@ -234,7 +237,7 @@ export default function CenterContent({ activeView }: CenterContentProps) {
         .open-link {
           font-size: 13px;
           font-weight: 500;
-          color: #2563eb;
+          color: #3a77e3;
         }
       `}</style>
     </div>
