@@ -12,11 +12,10 @@ export default function KeycloakProvider({
     <ReactKeycloakProvider
       authClient={keycloak}
       initOptions={{
-        // 🔴 Forces fresh login every time
         onLoad: "login-required",
-
-        // 🔴 Prevents iframe cookie reuse
+        pkceMethod: "S256",
         checkLoginIframe: false,
+        flow: "standard",
       }}
     >
       {children}

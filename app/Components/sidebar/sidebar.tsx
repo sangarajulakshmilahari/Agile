@@ -114,6 +114,10 @@ export default function Sidebar({
           cursor: pointer;
           justify-content: flex-start;
         }
+        li span {
+          color: #000000; /* force black for sidebar labels */
+          font-weight: 500;
+        }
 
         .sidebar.closed li {
           justify-content: center;
@@ -123,10 +127,13 @@ export default function Sidebar({
           background: #f5f5f5;
         }
 
-        .active {
-          background: #fff3e0;
+        li.active span {
           color: #f56c00;
           font-weight: 600;
+        }
+
+        li.active {
+          background: #fff3e0;
         }
 
         span {

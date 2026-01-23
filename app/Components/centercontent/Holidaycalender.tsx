@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export default function HolidayCalendar() {
   const holidays = [
     { date: "01 January", day: "Thursday", name: "New Year" },
@@ -17,7 +16,12 @@ export default function HolidayCalendar() {
 
   return (
     <div className="main-card">
-      <h3 className="section-heading" style={{ marginBottom: 16 ,color:"#f56c00",textAlign:"center"}}>Holiday Calendar – 2026</h3>
+      <h3
+        className="section-heading"
+        style={{ marginBottom: 16, color: "#f56c00", textAlign: "center" }}
+      >
+        Holiday Calendar – 2026
+      </h3>
 
       <table className="holiday-table">
         <thead>
@@ -39,31 +43,32 @@ export default function HolidayCalendar() {
       </table>
 
       <style jsx>{`
+        .section-heading {
+          font-weight: 600;
+        }
 
-       .section-heading{
-       font-weight :600
-       }
         .holiday-table {
           width: 100%;
           border-collapse: collapse;
         }
+
+        /* TABLE HEADERS */
         th {
           text-align: left;
           font-weight: 600;
           padding: 10px;
-          border-bottom: 1px solid #e5e7eb;
-          border-top: 1px solid #e5e7eb;
-          border-right: 1px solid #e5e7eb;
-          border-left: 1px solid #e5e7eb;
+          color: #000000; /* 👈 force black */
+          border: 1px solid #e5e7eb;
         }
+
+        /* TABLE DATA */
         td {
           padding: 10px;
-          border-bottom: 1px solid #f1f5f9;
-          border-right: 1px solid #e5e7eb;
-            border-left: 1px solid #e5e7eb;
-
           font-size: 14px;
-
+          color: #000000; /* 👈 force black */
+          border-left: 1px solid #e5e7eb;
+          border-right: 1px solid #e5e7eb;
+          border-bottom: 1px solid #f1f5f9;
         }
       `}</style>
     </div>

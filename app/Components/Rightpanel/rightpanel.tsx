@@ -119,8 +119,8 @@ export default function RightPanel() {
 
       <style jsx>{`
         .right-panel {
-          width: 360px; /* match grid */
-          max-width: 360px;
+          width: 330px; /* match grid */
+          max-width: 330px;
           justify-self: end; /* stick to right */
           overflow: hidden;
           box-sizing: border-box;
@@ -256,6 +256,26 @@ export default function RightPanel() {
 
         .link-row:hover {
           background: #f3f4f6;
+        }
+
+        /* Past & Upcoming event text */
+        .mini {
+          color: #000000; /* force black */
+        }
+
+        /* Event title text inside mini cards */
+        .mini span:not(.apply) {
+          color: #000000; /* override global gray */
+          font-size: 13px;
+        }
+
+        /* Job titles (React Developer, QA Engineer) */
+        .link-row span:first-child {
+          color: #000000;
+          font-weight: 500;
+        }
+        .link-row:hover span:first-child {
+          color: #111111;
         }
       `}</style>
     </aside>

@@ -222,10 +222,11 @@ export default function CenterContent({ activeView }: CenterContentProps) {
           filter: brightness(0) invert(1);
         }
 
-        .app-content h4 {
+        .application-card .app-content h4 {
           margin: 0;
           font-size: 14px;
           font-weight: 600;
+          color: #000000; /* force black */
         }
 
         .app-content p {

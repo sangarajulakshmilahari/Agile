@@ -72,11 +72,11 @@ export default function Dashboard() {
         }
 
         .dashboard-layout.sidebar-open {
-          grid-template-columns: 200px minmax(0, 1fr) 320px;
+          grid-template-columns: 200px minmax(0, 1fr) 330px;
         }
 
         .dashboard-layout.sidebar-closed {
-          grid-template-columns: 48px minmax(0, 1fr) 320px;
+          grid-template-columns: 50px minmax(0, 1fr) 330px;
         }
 
         .main-card {
