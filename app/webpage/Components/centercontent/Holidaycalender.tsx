@@ -58,7 +58,7 @@ export default function HolidayCalendar() {
           font-weight: 600;
           padding: 10px;
           color: #000000; /* 👈 force black */
-          border: 1px solid #e5e7eb;
+          border: 1px solid #5a5a5aa6;
         }
 
         /* TABLE DATA */
@@ -66,9 +66,9 @@ export default function HolidayCalendar() {
           padding: 10px;
           font-size: 14px;
           color: #000000; /* 👈 force black */
-          border-left: 1px solid #e5e7eb;
-          border-right: 1px solid #e5e7eb;
-          border-bottom: 1px solid #f1f5f9;
+          border-left: 1px solid #5a5a5aa6;
+          border-right: 1px solid #5a5a5aa6;
+          border-bottom: 1px solid #5a5a5aa6;
         }
       `}</style>
     </div>

@@ -78,6 +78,9 @@ export default function Sidebar({
         .sidebar.open {
           padding: 16px;
         }
+        .toggle {
+          color: #000000; /* or whatever you want */
+        }
 
         .sidebar.closed {
           padding: 12px 6px;

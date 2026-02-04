@@ -3,11 +3,41 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function RightPanel() {
+  const [selectedPerson, setSelectedPerson] = useState<birthdays | null>(null);
+  type birthdays = {
+    name: string;
+    date: string;
+    email: string;
+  };
+
+  const birthdays = [
+    {
+      name: "Karthik Sairam Vasali",
+      date: "Feb 12",
+      email: "karthik.vasali@adroitent.ai",
+    },
+    {
+      name: "Tharun Aadi R",
+      date: "Feb 14",
+      email: "tharun.ramakrishna@adroitent.ai",
+    },
+    {
+      name: "Sai Mounika Kapuganti",
+      date: "Feb 17",
+      email: "mounika.kapuganti@adroitent.ai",
+    },
+  ];
+
   const eventImages = [
     "/Eventimages/1.png",
     "/Eventimages/2.png",
     "/Eventimages/3.png",
     "/Eventimages/4.png",
+    "/Eventimages/5.jpg",
+    "/Eventimages/6.jpeg",
+    "/Eventimages/7.jpeg",
+    "/Eventimages/8.jpeg",
+    "/Eventimages/9.jpeg",
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -79,43 +109,51 @@ export default function RightPanel() {
         </div>
 
         <div className="events-card">
-          <h3 className="events-title">Upcoming Events</h3>
+          <h3 className="events-title">Upcoming Birthdays</h3>
 
-          <div className="mini">
-            🎉 Sankranthi <span>Jan 14</span>
-          </div>
-          <div className="mini">
-            🏢 Townhall <span>Feb 2</span>
-          </div>
-          <div className="mini">
-            🌸 Spring Kick-off <span>Mar 1</span>
-          </div>
-        </div>
-
-        <div className="events-card">
-          <h3 className="events-title">Current Openings</h3>
-
-          <a
-            href="http://referrals.adroitent.ai:8092/referral/index"
-            target="_blank"
-            // rel="noopener noreferrer"
-            className="mini link-row"
-          >
-            <span>React Developer</span>
-            <span className="apply">Apply →</span>
-          </a>
-
-          <a
-            href="http://referrals.adroitent.ai:8092/referral/index"
-            target="_blank"
-            // rel="noopener noreferrer"
-            className="mini link-row"
-          >
-            <span>QA Engineer</span>
-            <span className="apply">Apply →</span>
-          </a>
+          {birthdays.map((person, index) => (
+            <div
+              key={index}
+              className="mini clickable"
+              onClick={() => setSelectedPerson(person)}
+            >
+              <span>{person.name}</span>
+              <span>{person.date}</span>
+            </div>
+          ))}
         </div>
       </div>
+      {selectedPerson && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h4>Send Birthday Email?</h4>
+
+            <p>
+              Do you want to send a birthday email to
+              <strong> {selectedPerson.name}</strong>?
+            </p>
+
+            <div className="modal-actions">
+              <button
+                className="btn-cancel"
+                onClick={() => setSelectedPerson(null)}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="btn-send"
+                onClick={() => {
+                  window.location.href = `mailto:${selectedPerson.email}?subject=Happy Birthday 🎉`;
+                  setSelectedPerson(null);
+                }}
+              >
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <style jsx>{`
         .right-panel {
@@ -257,6 +295,13 @@ export default function RightPanel() {
         .link-row:hover {
           background: #f3f4f6;
         }
+        .clickable {
+          cursor: pointer;
+        }
+
+        .clickable:hover {
+          background: #f3f4f6;
+        }
 
         /* Past & Upcoming event text */
         .mini {
@@ -276,6 +321,62 @@ export default function RightPanel() {
         }
         .link-row:hover span:first-child {
           color: #111111;
+        }
+        .modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 999;
+        }
+
+        .modal {
+          background: white;
+          padding: 20px;
+          border-radius: 16px;
+          width: 300px;
+          text-align: center;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal h4 {
+          margin-bottom: 8px;
+          color: #3a77e3;
+        }
+
+        .modal p {
+          font-size: 14px;
+          margin-bottom: 16px;
+        }
+
+        .modal-actions {
+          display: flex;
+          gap: 12px;
+        }
+
+        .btn-cancel {
+          flex: 1;
+          background: #e5e7eb;
+          border: none;
+          padding: 8px;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+
+        .btn-send {
+          flex: 1;
+          background: #f56c00;
+          color: white;
+          border: none;
+          padding: 8px;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+
+        .btn-send:hover {
+          background: #e65f00;
         }
       `}</style>
     </aside>

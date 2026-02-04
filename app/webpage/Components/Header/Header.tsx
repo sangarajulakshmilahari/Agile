@@ -3,12 +3,19 @@
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import { useKeycloak } from "@react-keycloak/web";
-
+import { useEffect, useState } from "react";
 export default function Header() {
-  const { keycloak, initialized } = useKeycloak();
+  const [username, setUsername] = useState<string | null>(null);
+  useEffect(() => {
+    const match = document.cookie.match(/(^| )username=([^;]+)/);
+    if (match) {
+      setUsername(decodeURIComponent(match[2]));
+    }
+  }, []);
 
-  // if (!initialized) return null;
+  function handleLogout() {
+    window.location.href = "/api/auth/logout";
+  }
 
   return (
     <>
@@ -27,38 +34,13 @@ export default function Header() {
         {/* RIGHT */}
 
         <div className="header-right">
-          <FontAwesomeIcon icon={faBell} />
-
+          <FontAwesomeIcon icon={faBell} style={{ color: "#000" }} />
           <FontAwesomeIcon icon={faCircleUser} style={{ color: "#000" }} />
-
-          {/* <span className="user-name">
-            {keycloak.tokenParsed?.preferred_username}
-          </span> */}
-
+          <span className="user-name">{username ?? "User"}</span>
           <button
             className="logout-btn"
             onClick={() => {
-              // Clear storage
-              localStorage.clear();
-              sessionStorage.clear();
-
-              // Clear all app cookies
-              document.cookie.split(";").forEach((cookie) => {
-                document.cookie = cookie
-                  .replace(/^ +/, "")
-                  .replace(
-                    /=.*/,
-                    "=;expires=" + new Date().toUTCString() + ";path=/",
-                  );
-              });
-
-              // Clear Keycloak token
-              keycloak.clearToken();
-
-              // Realm logout
-              keycloak.logout({
-                redirectUri: window.location.origin,
-              });
+              handleLogout();
             }}
           >
             Logout

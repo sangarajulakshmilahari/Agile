@@ -1,32 +1,63 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useKeycloak } from "@react-keycloak/web";
 
 import Sidebar from "../Components/sidebar/sidebar";
 import Centercontent from "../Components/centercontent/centercontent";
 import RightPanel from "../Components/Rightpanel/rightpanel";
 import Header from "../Components/Header/Header";
 
-export default function Dashboard() {
-  const { keycloak, initialized } = useKeycloak();
+function DashboardLoader() {
+  return (
+    <div className="loader">
+      <div className="spinner" />
+      <p>Loading dashboard…</p>
 
-  const [activeView, setActiveView] = useState<"home" | "holiday">("home");
+      <style jsx>{`
+        .loader {
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: #0f172a;
+          color: #e5e7eb;
+        }
+
+        .spinner {
+          width: 42px;
+          height: 42px;
+          border: 4px solid rgba(255, 255, 255, 0.2);
+          border-top-color: #38bdf8;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin-bottom: 14px;
+        }
+
+        @keyframes spin {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+export default function Dashboard() {
+  const [mounted, setMounted] = useState(false);
+  const [activeView, setActiveView] =
+    useState<"home" | "holiday">("home");
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
-    if (initialized && !keycloak.authenticated) {
-      keycloak.login();
-    }
-  }, [initialized, keycloak]);
+    setMounted(true);
+  }, []);
 
-  // if (!initialized) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (!keycloak.authenticated) {
-  //   return <div>Redirecting to login...</div>;
-  // }
+  // 🔥 BLOCK dashboard until mount
+  if (!mounted) {
+    return <DashboardLoader />;
+  }
 
   return (
     <>
@@ -57,7 +88,7 @@ export default function Dashboard() {
 
       <style jsx global>{`
         .dashboard-page {
-          background: #f5f6fa;
+          background: #ffffff;
           min-height: 100vh;
           overflow-x: hidden;
         }
@@ -84,15 +115,13 @@ export default function Dashboard() {
           border-radius: 10px;
           padding: 14px;
           box-shadow: 0 12px 3px rgba(0, 0, 0, 0.06);
-          flex-direction: column;
-          gap: 2px;
         }
 
         .center-column {
           display: flex;
           flex-direction: column;
           gap: 16px;
-          min-width: 0; /* 🔥 REQUIRED */
+          min-width: 0;
         }
       `}</style>
     </>

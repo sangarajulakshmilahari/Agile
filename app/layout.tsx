@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import KeycloakProvider from "./providers/KeycloakProvider";
+
+
 
 export const metadata: Metadata = {
   title: "Agile Next",
@@ -14,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <KeycloakProvider>
-          {children} 
-        </KeycloakProvider>
+        
+       {children}
+        
       </body>
     </html>
   );
