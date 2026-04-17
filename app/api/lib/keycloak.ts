@@ -7,3 +7,6 @@ export default function keycloak() {
   };
 }
 console.log("Keycloak realm:", process.env.KEYCLOAK_REALM);
+
+
+
